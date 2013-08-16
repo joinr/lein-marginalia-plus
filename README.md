@@ -24,6 +24,8 @@ The old lein marg command is still there for the parallel layout.
 Since this just extends the existing lein-marginalia, all of the pre-existing 
 functionality is there, so everything should be backwards compatible.
 
+check out docs/uberdoc.html for an example of the reformatted output.
+
 License
 =======
 
