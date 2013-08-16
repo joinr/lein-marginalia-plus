@@ -1,13 +1,21 @@
 (ns leiningen.margplus
   (:require [leiningen [marg :refer :all]]))
 
+;;Now I know why we need this...
+(def dep-plus ['lein-marginalia-plus "0.8.0-SNAPSHOT"])
+
 ;;ripped since it was private.
 (defn- add-marg-dep [project]
   ;; Leiningen 2 is a bit smarter about only conjing it in if it
   ;; doesn't already exist and warning the user.
   (if-let [conj-dependency (resolve 'leiningen.core.project/conj-dependency)]
-    (conj-dependency project dep)
-    (update-in project [:dependencies] conj dep)))
+    (-> project
+        (conj-dependency dep)
+        (conj-dependency dep-plus))
+    (-> project 
+        (update-in  [:dependencies] conj dep)
+        (update-in  [:dependencies] conj dep-plus))))
+
 
 
 (defn margplus
